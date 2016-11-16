@@ -1,0 +1,6 @@
+FROM oracle:wls
+MAINTAINER Andras Bekesi <andras.bekesi@silbury.com>
+
+COPY start.sh /u01/app/oracle/start.sh
+CMD /u01/app/oracle/start.sh
+

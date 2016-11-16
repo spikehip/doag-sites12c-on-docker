@@ -1,0 +1,15 @@
+FROM oracle:xe
+MAINTAINER Andras Bekesi <andras.bekesi@silbury.com>
+
+RUN yum -y install sudo; yum clean all; echo "oracle	ALL	= (ALL) NOPASSWD:ALL" > /etc/sudoers.d/oracle
+COPY wls.conf /etc/supervisor/conf.d/wls.conf
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+
+USER oracle
+RUN mkdir /u01/app/oracle/weblogic; mkdir /u01/app/oracle/oraInventory; echo "inventory_loc=/u01/app/oracle/oraInventory" > /u01/app/oracle/oraInst.loc
+COPY wls-installer.sh /u01/app/oracle/wls-installer.sh
+COPY weblogic.rsp /u01/app/oracle/weblogic.rsp
+COPY sites.rsp /u01/app/oracle/sites.rsp
+
+EXPOSE 7001 7003
+

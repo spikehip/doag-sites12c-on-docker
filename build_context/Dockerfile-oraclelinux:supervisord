@@ -1,0 +1,6 @@
+FROM oraclelinux:7
+MAINTAINER Andras Bekesi <andras.bekesi@silbury.com>
+
+RUN yum -y install python-setuptools; yum clean all; easy_install supervisor
+
+

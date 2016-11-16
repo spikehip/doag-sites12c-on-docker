@@ -1,0 +1,9 @@
+FROM oraclelinux:jdk8
+MAINTAINER Andras Bekesi <andras.bekesi@silbury.com>
+
+COPY xe-installer.sh /xe-installer.sh
+COPY xe.rsp /xe.rsp
+EXPOSE 1521 8080
+
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY xe.conf /etc/supervisor/conf.d/xe.conf
